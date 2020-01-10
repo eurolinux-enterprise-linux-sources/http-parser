@@ -5,7 +5,7 @@
 
 Name:           http-parser
 Version:        %{somajor}.%{sominor}.%{sopoint}
-Release:        1%{?dist}
+Release:        5%{?dist}
 Summary:        HTTP request/response parser for C
 
 License:        MIT
@@ -101,6 +101,11 @@ make test -C %{_target_platform}
 %{_libdir}/libhttp_parser_strict.so
 
 %changelog
+* Thu Aug 10 2017 Fabiano Fidêncio <fidencio@redhat.com> - 2.7.1-5
+- Bump http-parser release number to avoid people pulling EPEL package instead
+  of RHEL package
+  Resolves: rhbz#1480321
+
 * Wed Feb 01 2017 Fabiano Fidêncio <fidencio@redhat.com> - 2.7.1-1
 - Import spec file and patches from latest fc25 package
   Resolves: rhbz#1393819
