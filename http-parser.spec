@@ -5,7 +5,7 @@
 
 Name:           http-parser
 Version:        %{somajor}.%{sominor}.%{sopoint}
-Release:        8%{?dist}
+Release:        1%{?dist}
 Summary:        HTTP request/response parser for C
 
 License:        MIT
@@ -14,11 +14,6 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 # https://github.com/nodejs/http-parser/commit/335850f6b868d3411968cbf5a4d59fe619dee36f
 Patch0001:      %{name}-0001-parser-HTTP_STATUS_MAP-XX-and-enum-http_status.patch
-Patch0002:      CVE-2018-12121-backport.patch
-Patch0003:      CVE-2018-7159-reject-interior-blanks-in-Content-Length-backport.patch
-Patch0004:      CVE-2018-7159-Fix-Content-Lenght-with-obsolete-line-folding-backport.patch
-Patch0005:      CVE-2018-7159-Dissallow-empty-Content-Length.patch
-Patch0006:      cve-tests-backport.patch
 
 BuildRequires:  gcc
 BuildRequires:  cmake
@@ -106,26 +101,6 @@ make test -C %{_target_platform}
 %{_libdir}/libhttp_parser_strict.so
 
 %changelog
-* Mon Apr  1 2019 Jakub Hrozek <jhrozek@redhat.com> - 2.7.1-8
-- Backport needed test fixes
-- Related: rhbz#1666024 - CVE-2018-7159 http-parser: nodejs: HTTP parser
-                          allowed for spaces inside Content-Length header
-                          values [rhel-7]
-
-* Sat Mar 23 2019 Jakub Hrozek <jhrozek@redhat.com> - 2.7.1-7
-- Resolves: rhbz#1666024 - CVE-2018-7159 http-parser: nodejs: HTTP parser
-                           allowed for spaces inside Content-Length header
-                           values [rhel-7]
-
-* Fri Mar 22 2019 Jakub Hrozek <jhrozek@redhat.com> - 2.7.1-6
-- Resolves: rhbz#1666381 - CVE-2018-12121 http-parser: nodejs: Denial of
-                           Service with large HTTP headers [rhel-7]
-
-* Thu Aug 10 2017 Fabiano Fidêncio <fidencio@redhat.com> - 2.7.1-5
-- Bump http-parser release number to avoid people pulling EPEL package instead
-  of RHEL package
-  Resolves: rhbz#1479471
-
 * Wed Feb 01 2017 Fabiano Fidêncio <fidencio@redhat.com> - 2.7.1-1
 - Import spec file and patches from latest fc25 package
   Resolves: rhbz#1393819
